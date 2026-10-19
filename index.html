@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="東海大學進階產品開發課程：從洞察到證據，學會設計產品實驗與快速原型。">
+<link rel="icon" href="data:,">
+<title>從洞察到證據｜產品實驗與快速原型</title>
+<style>
+:root{
+  --ink:#f7f2e8;--muted:#aeb5c6;--bg:#0c1020;--panel:#171d32;--panel2:#202842;
+  --coral:#ff6b57;--lime:#c9f75f;--gold:#ffd166;--cyan:#70d6ff;--danger:#ff5d73;
+  --shadow:0 28px 80px rgba(0,0,0,.35);--radius:28px;
+}
+*{box-sizing:border-box}html,body{margin:0;background:#080b15;color:var(--ink);font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;overflow:hidden}body{min-height:100vh}
+button{font:inherit}.deck-viewport{position:absolute;inset:0 0 82px;overflow:hidden;background:radial-gradient(circle at 10% 10%,#202848 0,transparent 34%),#080b15}.deck{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center}.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:78px 100px 72px;background:var(--bg);overflow:hidden}.slide.active{display:flex;animation:fade .22s ease-out}.slide::after{content:"";position:absolute;width:420px;height:420px;border:78px solid rgba(201,247,95,.07);border-radius:50%;right:-260px;top:-260px;pointer-events:none}.slide.light{background:#f5f0e6;color:#111827}.slide.coral{background:var(--coral);color:#101525}.slide.lime{background:var(--lime);color:#101525}.slide.split{padding:0;display:none;flex-direction:row}.slide.split.active{display:flex}.half{width:50%;padding:92px 86px;display:flex;flex-direction:column;justify-content:center}.half.dark{background:#11172a}.half.cream{background:#f5f0e6;color:#111827}
+@keyframes fade{from{opacity:.25}to{opacity:1}}@media(prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.eyebrow{font-size:25px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--lime);margin-bottom:18px}.light .eyebrow,.coral .eyebrow,.lime .eyebrow{color:#27304b}.section-num{font-size:180px;font-weight:950;line-height:.8;color:rgba(255,255,255,.08);position:absolute;right:115px;bottom:115px}.light .section-num,.coral .section-num,.lime .section-num{color:rgba(17,24,39,.08)}
+h1{font-size:88px;line-height:1.07;letter-spacing:-.04em;margin:0;max-width:1500px;text-wrap:balance}h2{font-size:66px;line-height:1.12;letter-spacing:-.035em;margin:0 0 34px;max-width:1560px;text-wrap:balance}h3{font-size:34px;margin:0 0 14px;line-height:1.25}.lede{font-size:34px;line-height:1.55;color:var(--muted);max-width:1380px;margin:28px 0 0}.light .lede,.coral .lede,.lime .lede{color:#46506a}.mega{font-size:132px;font-weight:950;line-height:.95;letter-spacing:-.05em}.quote{font-size:58px;line-height:1.35;font-weight:800;max-width:1450px;text-wrap:balance}.accent{color:var(--lime)}.coral-text{color:var(--coral)}.dark-text{color:#101525}.muted{color:var(--muted)}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:54px;position:relative;z-index:2}.chapter{font-size:22px;color:var(--muted);letter-spacing:.08em}.page-no{font:700 22px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}.footer-note{position:absolute;left:100px;bottom:38px;font-size:19px;color:#778098;letter-spacing:.03em}.light .footer-note{color:#697289}
+.grid{display:grid;gap:24px;position:relative;z-index:2}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.card{background:var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:32px;min-height:180px}.light .card{background:white;border-color:#d9d5ca;box-shadow:0 12px 36px rgba(25,32,50,.08)}.card strong{display:block;font-size:31px;margin-bottom:12px}.card p,.card li{font-size:25px;line-height:1.45;color:var(--muted);margin:0}.light .card p,.light .card li{color:#566078}.card.em{background:var(--lime);color:#101525;border:none}.card.em p{color:#293149}.card.coral-card{background:var(--coral);color:#111827;border:none}.card.coral-card p{color:#293149}.card.gold-card{background:var(--gold);color:#111827;border:none}.card.gold-card p{color:#293149}
+.pill{display:inline-flex;align-items:center;padding:10px 18px;border-radius:999px;background:rgba(201,247,95,.12);color:var(--lime);font-size:22px;font-weight:800;border:1px solid rgba(201,247,95,.3)}.light .pill{background:#e7f7bd;color:#31410e;border-color:#bedb72}.flow{display:flex;gap:12px;align-items:stretch;margin-top:42px}.flow .step{flex:1;position:relative;padding:28px 26px;background:var(--panel);border-radius:22px;border:1px solid rgba(255,255,255,.08)}.flow .step:not(:last-child)::after{content:"→";position:absolute;right:-24px;top:50%;z-index:3;font-size:30px;color:var(--lime);transform:translateY(-50%)}.step b{display:block;font-size:28px;margin-bottom:10px}.step span{font-size:21px;color:var(--muted);line-height:1.4}
+.hero-mark{position:absolute;right:90px;bottom:80px;width:560px;height:560px}.orbit{position:absolute;border:2px solid rgba(255,255,255,.18);border-radius:50%;inset:0}.orbit.o2{inset:74px;border-color:rgba(201,247,95,.45)}.orbit.o3{inset:160px;background:var(--coral);border:none;box-shadow:var(--shadow)}.orbit-label{position:absolute;font-size:25px;font-weight:900;padding:16px 20px;background:var(--ink);color:#101525;border-radius:14px}.ol1{left:-40px;top:90px}.ol2{right:-10px;top:220px}.ol3{left:10px;bottom:60px}.center-word{position:absolute;inset:160px;display:flex;align-items:center;justify-content:center;text-align:center;color:#111827;font-weight:950;font-size:40px;line-height:1.08;z-index:2}
+.evidence{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:520px;margin-top:28px}.bar{border-radius:20px 20px 8px 8px;background:var(--panel2);padding:22px 14px;display:flex;flex-direction:column;justify-content:flex-end;text-align:center;border:1px solid rgba(255,255,255,.08)}.bar:nth-child(1){height:150px}.bar:nth-child(2){height:200px}.bar:nth-child(3){height:255px}.bar:nth-child(4){height:315px}.bar:nth-child(5){height:375px}.bar:nth-child(6){height:440px}.bar:nth-child(7){height:510px;background:var(--lime);color:#101525}.bar b{font-size:23px}.bar small{font-size:18px;color:var(--muted);margin-top:10px}.bar:last-child small{color:#35411f}
+.matrix{display:grid;grid-template-columns:90px 1fr 1fr;grid-template-rows:1fr 1fr 70px;gap:12px;height:620px;align-items:stretch}.axis-y{grid-row:1/3;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--muted)}.quad{padding:30px;border-radius:24px;background:var(--panel);border:1px solid rgba(255,255,255,.08)}.quad.risk{background:var(--coral);color:#111827}.quad b{font-size:30px;display:block;margin-bottom:14px}.quad p{font-size:22px;line-height:1.45;margin:0;color:var(--muted)}.quad.risk p{color:#293149}.axis-x{grid-column:2/4;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--muted)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:28px}.compare .side{border-radius:28px;padding:34px;background:var(--panel);border:1px solid rgba(255,255,255,.09)}.compare .bad{border-top:8px solid var(--danger)}.compare .good{border-top:8px solid var(--lime)}.side .label{font-size:21px;font-weight:900;letter-spacing:.1em;margin-bottom:20px}.side blockquote{font-size:34px;line-height:1.42;margin:0;font-weight:750}.side .why{margin-top:26px;font-size:23px;line-height:1.45;color:var(--muted)}
+.practice{background:#10172a}.practice::before{content:"";position:absolute;inset:22px;border:2px dashed rgba(201,247,95,.35);border-radius:34px;pointer-events:none}.practice-head{display:flex;justify-content:space-between;gap:40px;align-items:flex-start}.timer-display{font:900 74px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--lime);letter-spacing:-.05em}.practice-grid{display:grid;grid-template-columns:1.2fr 1fr .9fr;gap:24px;margin-top:40px}.practice-box{background:var(--panel);border-radius:24px;padding:28px;border:1px solid rgba(255,255,255,.08)}.practice-box h3{font-size:27px;color:var(--lime)}.practice-box ol,.practice-box ul{margin:12px 0 0;padding-left:30px}.practice-box li{font-size:22px;line-height:1.5;margin:7px 0;color:#dfe4ef}.teacher-box{background:#252c43}.timer-actions{display:flex;gap:12px;margin-top:14px}.small-btn{border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--ink);padding:10px 16px;border-radius:12px;cursor:pointer}.small-btn:hover,.small-btn:focus-visible{border-color:var(--lime);outline:none}
+.hypothesis{font-size:37px;line-height:1.62;background:var(--panel);border-radius:28px;padding:38px 44px;border:1px solid rgba(255,255,255,.09);max-width:1600px}.blank{display:inline-block;border-bottom:4px solid var(--lime);min-width:210px;color:var(--lime);font-weight:850}.selector{display:grid;grid-template-columns:420px 1fr;gap:28px;min-height:560px}.selector-tabs{display:flex;flex-direction:column;gap:12px}.tab-btn{border:1px solid rgba(255,255,255,.12);background:var(--panel);color:var(--ink);padding:22px 24px;border-radius:18px;text-align:left;font-size:25px;font-weight:750;cursor:pointer}.tab-btn.active,.tab-btn:hover,.tab-btn:focus-visible{background:var(--lime);color:#101525;outline:none}.selector-panel{background:var(--panel);border-radius:28px;padding:42px}.selector-panel h3{font-size:44px}.selector-panel p{font-size:28px;line-height:1.55;color:var(--muted)}.selector-panel .recommend{display:inline-block;margin-top:24px;padding:15px 22px;border-radius:14px;background:var(--coral);color:#101525;font-weight:900;font-size:24px}
+.reveal{filter:blur(14px);opacity:.28;transition:.2s;user-select:none}.reveal.shown{filter:none;opacity:1;user-select:auto}.reveal-btn,.choice-btn{border:none;background:var(--lime);color:#101525;font-size:24px;font-weight:900;padding:15px 22px;border-radius:14px;cursor:pointer}.reveal-btn:hover,.choice-btn:hover,.reveal-btn:focus-visible,.choice-btn:focus-visible{transform:translateY(-2px);outline:4px solid rgba(112,214,255,.45)}
+.decision-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px}.choice-btn{min-height:110px;font-size:31px;background:var(--panel);color:var(--ink);border:1px solid rgba(255,255,255,.1)}.choice-btn[data-choice="adjust"]{border-color:var(--gold)}.choice-btn[data-choice="stop"]{border-color:var(--coral)}.choice-btn.selected{background:var(--lime);color:#101525}.decision-feedback{margin-top:28px;padding:28px;border-radius:22px;background:var(--panel);font-size:27px;line-height:1.5;min-height:104px;color:var(--muted)}
+.rubric{display:grid;grid-template-columns:1.5fr .5fr;gap:1px;background:#4a5165;border-radius:24px;overflow:hidden;margin-top:18px}.rubric div{background:var(--panel);padding:19px 26px;font-size:24px}.rubric .score{font-weight:900;color:var(--lime);text-align:center}
+.controls{position:fixed;left:0;right:0;bottom:0;height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:#0c1020;border-top:1px solid rgba(255,255,255,.1);z-index:50}.controls .cluster{display:flex;align-items:center;gap:10px}.control-btn{height:48px;min-width:48px;padding:0 17px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:#171d32;color:var(--ink);cursor:pointer;font-weight:800}.control-btn:hover,.control-btn:focus-visible{border-color:var(--lime);outline:none}.progress{width:280px;height:7px;background:#252c43;border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;background:var(--lime);width:0}.counter{font:800 18px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);min-width:76px;text-align:center}.kbd{font-size:16px;color:#848da2}
+.dialog{border:none;border-radius:28px;padding:0;background:#10172a;color:var(--ink);width:min(1500px,90vw);max-height:84vh;box-shadow:var(--shadow)}.dialog::backdrop{background:rgba(3,5,12,.78);backdrop-filter:blur(6px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;padding:25px 30px;border-bottom:1px solid rgba(255,255,255,.1)}.dialog-head h2{font-size:36px;margin:0}.overview-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:28px;max-height:65vh;overflow:auto}.overview-item{border:1px solid rgba(255,255,255,.1);background:var(--panel);color:var(--ink);padding:20px;border-radius:16px;text-align:left;cursor:pointer;min-height:112px}.overview-item:hover,.overview-item:focus-visible{border-color:var(--lime);outline:none}.overview-item small{color:var(--lime);display:block;margin-bottom:8px}.overview-item span{font-size:20px;font-weight:750;line-height:1.3}.close-btn{font-size:26px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:transparent;color:var(--ink);cursor:pointer}
+@media(max-height:720px) and (min-width:761px){.controls{height:64px}.deck-viewport{inset:0 0 64px}}
+@media(max-width:760px){html,body{overflow:hidden}.deck-viewport{position:fixed;inset:0 0 72px;overflow-y:auto;background:var(--bg)}.deck{position:static;width:100%;height:auto;transform:none!important}.slide,.slide.split{position:relative;width:100%;min-height:calc(100svh - 72px);height:auto;padding:32px 22px 70px;overflow:visible}.slide.split{flex-direction:column}.half{width:100%;padding:36px 22px}.slide::after,.section-num,.hero-mark{display:none}.slide .flow{width:auto!important}h1{font-size:46px}h2{font-size:38px;margin-bottom:22px}.mega{font-size:62px}.quote{font-size:34px}.lede{font-size:23px}.eyebrow{font-size:17px}.topline{margin-bottom:28px}.grid,.g2,.g3,.g4,.compare,.practice-grid,.selector,.decision-row{grid-template-columns:1fr}.card{min-height:0;padding:22px}.card strong{font-size:25px}.card p,.card li{font-size:20px}.flow{flex-direction:column}.flow .step:not(:last-child)::after{content:"↓";right:50%;top:auto;bottom:-25px}.evidence{grid-template-columns:1fr;height:auto;align-items:stretch}.bar,.bar:nth-child(n){height:auto;min-height:78px;flex-direction:row;justify-content:space-between;align-items:center}.matrix{grid-template-columns:1fr;grid-template-rows:auto;height:auto}.axis-y,.axis-x{display:none}.practice-head{flex-direction:column}.hypothesis{font-size:25px;padding:24px}.selector-tabs{display:grid;grid-template-columns:1fr 1fr}.selector-panel{padding:25px}.selector-panel h3{font-size:34px}.selector-panel p{font-size:22px}.overview-grid{grid-template-columns:1fr 1fr}.controls{height:72px;padding:0 10px}.controls .hide-mobile,.progress,.kbd{display:none}.control-btn{padding:0 13px}.footer-note{left:22px;bottom:25px}.rubric div{font-size:19px;padding:14px}.timer-display{font-size:56px}}
+@media print{@page{size:13.333in 7.5in;margin:0}html,body{overflow:visible;background:white}.deck-viewport{position:static;inset:auto;overflow:visible}.deck{position:static;width:auto;height:auto;transform:none!important}.slide,.slide.split{position:relative;display:flex!important;width:13.333in;height:7.5in;page-break-after:always;break-after:page;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:54px 68px 50px}.slide.split{padding:0}.controls,.dialog,.timer-actions{display:none!important}.reveal{filter:none;opacity:1}.footer-note{left:68px;bottom:25px}.practice::before{inset:14px}.hero-mark{transform:scale(.72);transform-origin:right bottom}.topline{margin-bottom:30px}h1{font-size:58px}h2{font-size:44px}.lede{font-size:23px}.quote{font-size:40px}.card{padding:22px}.card strong{font-size:23px}.card p,.card li{font-size:17px}.practice-grid{gap:14px;margin-top:22px}.practice-box{padding:20px}.practice-box li{font-size:16px}.timer-display{font-size:48px}.evidence{height:360px}.bar:nth-child(1){height:100px}.bar:nth-child(2){height:135px}.bar:nth-child(3){height:170px}.bar:nth-child(4){height:210px}.bar:nth-child(5){height:250px}.bar:nth-child(6){height:300px}.bar:nth-child(7){height:350px}}
+</style>
+</head>
+<body>
+<main class="deck-viewport" aria-live="polite"><div class="deck" id="deck">
+<section class="slide active" id="cover" data-title="封面">
+  <div class="eyebrow">東海大學｜產品開發進階篇</div>
+  <h1>從洞察到<span class="accent">證據</span></h1>
+  <p class="lede">產品實驗與快速原型：不要再問「你會不會用？」</p>
+  <div class="flow" style="width:1050px;margin-top:70px"><div class="step"><b>提出假設</b><span>把想法變成能被推翻的句子</span></div><div class="step"><b>設計實驗</b><span>用最小成本取得行為證據</span></div><div class="step"><b>做出決定</b><span>繼續、調整，或勇敢停止</span></div></div>
+  <div class="hero-mark"><div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="center-word">EVIDENCE<br>BEFORE<br>CODE</div><span class="orbit-label ol1">假設</span><span class="orbit-label ol2">實驗</span><span class="orbit-label ol3">決策</span></div>
+  <div class="footer-note">Gimmy Chiu｜從 0 到 1 的下一步</div>
+</section>
+<section class="slide" id="recap" data-title="上一堂的共同語言">
+  <div class="topline"><span class="chapter">RECAP</span><span class="page-no"></span></div>
+  <div class="eyebrow">上一堂，我們先踩住煞車</div><h2>在寫第一行 Code 前，先確認<span class="accent">問題值得解</span></h2>
+  <div class="grid g3" style="margin-top:34px"><div class="card"><strong>5 Why</strong><p>不要停在表面現象，往下追到真正原因。</p></div><div class="card"><strong>HMW</strong><p>把痛點轉成有方向、但不綁死解法的機會。</p></div><div class="card em"><strong>MVP</strong><p>先驗證最重要的未知，不是先做比較少的功能。</p></div></div>
+  <p class="quote" style="margin:55px 0 0">這一堂，我們要回答：<br><span class="coral-text">「什麼證據出現後，才值得開始做？」</span></p>
+</section>
+<section class="slide light" id="recap-premises" data-title="前提回顧：五個共同前提">
+  <div class="topline"><span class="chapter">PRECONDITION REVIEW · 01</span><span class="page-no"></span></div>
+  <div class="eyebrow">先確認我們站在同一個起點</div><h2>上一堂留下的五個共同前提</h2>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><strong>01 問題先於解法</strong><p>技術做得到，不代表市場真的需要。</p></div>
+    <div class="card"><strong>02 行為重於意見</strong><p>「聽起來不錯」不等於願意採取行動。</p></div>
+    <div class="card"><strong>03 想要不等於需要</strong><p>使用者說的是表面方案，真正需求藏在情境裡。</p></div>
+    <div class="card"><strong>04 往根因追問</strong><p>用 5 Why 離開症狀，找到真正值得處理的原因。</p></div>
+    <div class="card"><strong>05 MVP 是學習工具</strong><p>不是縮小成品，而是最低成本的關鍵驗證。</p></div>
+    <div class="card coral-card"><strong>今天的前提</strong><p>我們不再辯論這些觀念；直接用它們做更難的決策。</p></div>
+  </div>
+</section>
+<section class="slide" id="recap-map" data-title="前提回顧：一張圖找回全貌">
+  <div class="topline"><span class="chapter">PRECONDITION REVIEW · 02</span><span class="page-no"></span></div>
+  <div class="eyebrow">從現象走到證據</div><h2>上一堂的完整路線，其實是一條學習鏈</h2>
+  <div class="flow" style="margin-top:48px">
+    <div class="step"><b>現象</b><span>先看見發生了什麼，不急著命名功能。</span></div>
+    <div class="step"><b>5 Why</b><span>持續往下追問，離開表面症狀。</span></div>
+    <div class="step"><b>洞察</b><span>理解使用者在特定情境真正想完成什麼。</span></div>
+    <div class="step"><b>HMW</b><span>把痛點轉成有方向、但不綁死解法的機會。</span></div>
+    <div class="step"><b>核心假設</b><span>說清楚哪件事必須為真。</span></div>
+    <div class="step"><b>MVP</b><span>用最低成本取得行為證據。</span></div>
+  </div>
+  <p class="quote" style="margin:58px 0 0">今天要放大的，就是最後兩格：<br><span class="accent">假設怎麼選？MVP 怎麼驗？</span></p>
+</section>
+<section class="slide" id="recap-check" data-title="前提回顧：三題快速檢查">
+  <div class="topline"><span class="chapter">PRECONDITION REVIEW · 03</span><span class="page-no"></span></div>
+  <div class="eyebrow">快問快答</div><h2>如果這三題能說出理由，我們就可以往前走</h2>
+  <div class="grid g3" style="margin-top:24px">
+    <div class="card"><strong>沒有完整系統，能算 MVP 嗎？</strong><div class="reveal" id="recapAnswer1"><p>可以。Zappos 用到店裡拍鞋、有人下單才去買，先驗證「是否有人願意在線上買鞋」。</p></div><button class="reveal-btn" data-reveal="recapAnswer1" style="margin-top:22px">揭曉答案</button></div>
+    <div class="card"><strong>使用者說想要 AI，就是需求嗎？</strong><div class="reveal" id="recapAnswer2"><p>不是。AI 是一種解法；先追問他在哪個情境卡住、目前怎麼處理，以及真正想得到的價值。</p></div><button class="reveal-btn" data-reveal="recapAnswer2" style="margin-top:22px">揭曉答案</button></div>
+    <div class="card"><strong>HMW 應該直接指定功能嗎？</strong><div class="reveal" id="recapAnswer3"><p>不應該。好的 HMW 指定對象、情境與正面價值，同時保留多種可能解法。</p></div><button class="reveal-btn" data-reveal="recapAnswer3" style="margin-top:22px">揭曉答案</button></div>
+  </div>
+  <div class="footer-note">先請學生口頭回答理由，再點擊揭曉</div>
+</section>
+<section class="slide coral" id="recap-upgrade" data-title="從上一堂升級到這一堂">
+  <div class="topline"><span class="chapter dark-text">PRECONDITION REVIEW · 04</span><span class="page-no dark-text"></span></div>
+  <div class="eyebrow">能力升級</div><h2>上一堂知道流程；這一堂要能處理<span style="background:#101525;color:var(--lime);padding:0 14px">不確定性</span></h2>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card" style="background:#f7f2e8;color:#101525"><strong>上一堂：找到真正問題</strong><p style="color:#46506a">這個現象背後，使用者真正想完成什麼？</p></div>
+    <div class="card" style="background:#101525"><strong>這一堂：找到最危險假設</strong><p>哪件事一錯，整個產品就不成立？</p></div>
+    <div class="card" style="background:#f7f2e8;color:#101525"><strong>上一堂：知道 MVP 的目的</strong><p style="color:#46506a">不要一開始就投入完整技術開發。</p></div>
+    <div class="card" style="background:#101525"><strong>這一堂：設計可信實驗</strong><p>要看什麼行為、多少人、多久，才算通過？</p></div>
+  </div>
+  <p class="quote dark-text" style="margin:36px 0 0">今天的目標不是更會想點子，<br>而是更會判斷<span style="font-weight:950">哪些點子值得做。</span></p>
+</section>
+<section class="slide coral" id="opening-question" data-title="20 個人說會用">
+  <div class="eyebrow">先別急著回答</div><div class="mega">20 個人都說<br>「我會用！」</div>
+  <p class="quote" style="margin:48px 0 0">你會開始開發嗎？</p><div class="footer-note dark-text">先用手勢選擇：會／不會／還缺資料</div>
+</section>
+<section class="slide" id="today-loop" data-title="今天的學習循環">
+  <div class="topline"><span class="chapter">TODAY'S LOOP</span><span class="page-no"></span></div><h2>今天不是聽完五個工具；而是跑完一次<span class="accent">產品學習循環</span></h2>
+  <div class="flow" style="margin-top:60px"><div class="step"><b>01 找風險</b><span>哪個假設一錯，整個產品就不成立？</span></div><div class="step"><b>02 寫假設</b><span>誰、在何種情境、會做出什麼行為？</span></div><div class="step"><b>03 做實驗</b><span>選擇能取得行為證據的最小方法。</span></div><div class="step"><b>04 看證據</b><span>先訂門檻，再看結果，不替點子找理由。</span></div><div class="step"><b>05 做決定</b><span>繼續、調整，或停止。</span></div></div>
+  <p class="lede">下課前，每組會帶走一份可執行的產品實驗。</p>
+</section>
+<section class="slide split" id="xiaan" data-title="主角小安">
+  <div class="half dark"><div class="eyebrow">本堂課的唯一主線</div><h1>東海學生<br><span class="accent">小安</span></h1><p class="lede">每次分組報告，大家都說「有在做」。直到截止前一天，才發現進度完全對不上。</p></div>
+  <div class="half cream"><span class="pill">小安的想法</span><p class="quote dark-text" style="margin:35px 0">做一個「分組進度追蹤服務」，讓問題提早被看見。</p><p class="lede">聽起來合理。可是——合理不等於成立。</p></div>
+</section>
+<section class="slide light" id="feature-trap" data-title="功能陷阱">
+  <div class="topline"><span class="chapter">THE FEATURE TRAP</span><span class="page-no"></span></div><div class="eyebrow">小安很快就有了完整藍圖</div><h2>AI、自動提醒、甘特圖、排行榜、即時聊天……</h2>
+  <div class="grid g4" style="margin-top:28px"><div class="card"><strong>AI 摘要</strong><p>自動整理每個人的工作進度。</p></div><div class="card"><strong>智慧提醒</strong><p>未回報時自動催促組員。</p></div><div class="card"><strong>進度排行榜</strong><p>用排名提高完成動機。</p></div><div class="card coral-card"><strong>但是</strong><p>有人願意持續回報嗎？</p></div></div>
+  <p class="quote dark-text" style="margin:46px 0 0">產品不是一堆功能。<br><span class="coral-text">產品是一堆還沒被證明的假設。</span></p>
+</section>
+<section class="slide" id="evidence-ladder" data-title="證據階梯">
+  <div class="topline"><span class="chapter">EVIDENCE LADDER</span><span class="page-no"></span></div><h2>不是所有「好評」，都有相同重量</h2>
+  <div class="evidence"><div class="bar"><b>按讚</b><small>幾乎零成本</small></div><div class="bar"><b>說會用</b><small>禮貌也可能發生</small></div><div class="bar"><b>留資料</b><small>願意暴露身分</small></div><div class="bar"><b>完成任務</b><small>願意花時間</small></div><div class="bar"><b>邀請別人</b><small>願意押上信任</small></div><div class="bar"><b>付費／付訂</b><small>願意承擔成本</small></div><div class="bar"><b>持續使用</b><small>價值進入日常</small></div></div>
+</section>
+<section class="slide" id="hand-poll" data-title="現場選擇">
+  <div class="topline"><span class="chapter">QUICK CHOICE</span><span class="page-no"></span></div><div class="eyebrow">回到剛才的問題</div><h2>20 個人說會用，現在你的答案是？</h2>
+  <div class="decision-row"><button class="choice-btn poll-choice" data-poll="build">直接開始做</button><button class="choice-btn poll-choice" data-poll="ask">再問更多人</button><button class="choice-btn poll-choice" data-poll="behavior">先設計行為實驗</button></div>
+  <div class="decision-feedback" id="pollFeedback">請選一個答案。這不是統計投票，而是讓全班說出判斷理由。</div>
+  <div class="footer-note">講師可邀請三種選擇各一位同學說明理由</div>
+</section>
+<section class="slide lime" id="section-assumption" data-title="第一章：找出最危險的假設">
+  <div class="eyebrow">PART 01</div><div class="mega">找出<br>最危險的假設</div><p class="lede dark-text">不是先問「要做哪些功能」，而是先問「哪件事一錯，全部都不成立」。</p><span class="section-num">01</span>
+</section>
+<section class="slide" id="assumptions" data-title="小安的七個假設">
+  <div class="topline"><span class="chapter">WHAT MUST BE TRUE?</span><span class="page-no"></span></div><h2>要讓小安的產品成功，哪些事情必須是真的？</h2>
+  <div class="grid g3"><div class="card"><strong>問題夠痛</strong><p>分組進度不透明，嚴重到大家想改變。</p></div><div class="card"><strong>願意回報</strong><p>組員願意每週主動填寫進度。</p></div><div class="card"><strong>組長願意邀請</strong><p>願意把新工具帶進既有群組。</p></div><div class="card"><strong>提醒有幫助</strong><p>提醒不會被視為催促與騷擾。</p></div><div class="card"><strong>透明不傷關係</strong><p>公開進度不會引起防衛與衝突。</p></div><div class="card coral-card"><strong>現有工具不夠</strong><p>LINE、Notion、Trello 沒有已經解決問題。</p></div></div>
+</section>
+<section class="slide light" id="four-types" data-title="四類假設">
+  <div class="topline"><span class="chapter">ASSUMPTION TYPES</span><span class="page-no"></span></div><h2>用四個角度，把「聽起來不錯」拆開</h2>
+  <div class="grid g4"><div class="card"><span class="pill">需求</span><strong style="margin-top:22px">問題存在嗎？</strong><p>是否頻繁、具體，而且造成真實代價？</p></div><div class="card"><span class="pill">價值</span><strong style="margin-top:22px">他真的在意嗎？</strong><p>是否願意付出時間、資料、信任或金錢？</p></div><div class="card"><span class="pill">使用</span><strong style="margin-top:22px">他做得到嗎？</strong><p>是否理解流程，並能順利完成關鍵任務？</p></div><div class="card"><span class="pill">可行</span><strong style="margin-top:22px">我們做得到嗎？</strong><p>能否以合理成本、品質和速度持續提供？</p></div></div>
+  <p class="lede">初期最常見的錯誤：很早證明「做得到」，卻還沒證明「有人在意」。</p>
+</section>
+<section class="slide" id="impact-uncertainty" data-title="影響與不確定性">
+  <div class="topline"><span class="chapter">RISK = IMPACT × UNCERTAINTY</span><span class="page-no"></span></div><h2>最危險，不是最難做；是<span class="accent">影響最大、我們又最不確定</span></h2>
+  <div class="grid g2" style="margin-top:30px"><div class="card"><strong>影響大</strong><p>如果它是錯的，產品核心價值或使用流程就不成立。</p></div><div class="card"><strong>不確定高</strong><p>我們只有直覺、傳聞或幾句稱讚，沒有真實行為證據。</p></div></div>
+  <p class="quote" style="margin:48px 0 0">先驗證右上角，而不是先完成最酷的功能。</p>
+</section>
+<section class="slide" id="risk-matrix" data-title="假設風險矩陣">
+  <div class="topline"><span class="chapter">ASSUMPTION MAP</span><span class="page-no"></span></div><h2>假設風險矩陣</h2>
+  <div class="matrix"><div class="axis-y">不確定性　低 → 高</div><div class="quad"><b>需要更多理解</b><p>不確定，但就算錯了也不會立即致命。</p></div><div class="quad risk"><b>現在就驗證</b><p>一旦錯誤，整個產品方向都要改變。</p></div><div class="quad"><b>先記錄</b><p>已有不少證據，而且短期影響有限。</p></div><div class="quad"><b>排入執行</b><p>影響大，但已有足夠證據支持。</p></div><div class="axis-x">對產品成敗的影響　低 → 高</div></div>
+</section>
+<section class="slide practice" id="practice-map" data-title="實作一：假設地圖">
+  <div class="practice-head"><div><div class="eyebrow">暫停講解・學生實作 01</div><h2>把產品想法拆成假設地圖</h2></div><div><div class="timer-display" data-timer-display>15:00</div><div class="timer-actions"><button class="small-btn" data-timer-start="15">開始</button><button class="small-btn" data-timer-pause>暫停</button><button class="small-btn" data-timer-reset="15">重設</button></div></div></div>
+  <div class="practice-grid"><div class="practice-box"><h3>學生現在完成</h3><ol><li>選一個校園生活問題。</li><li>寫出至少 6 個「必須為真」的假設。</li><li>放入影響 × 不確定矩陣。</li><li>圈出唯一一個最先驗證的假設。</li></ol></div><div class="practice-box"><h3>完成條件</h3><ul><li>至少包含需求、價值、使用三類。</li><li>能說明右上角假設為何致命。</li><li>全組只能選一個第一順位。</li></ul></div><div class="practice-box teacher-box"><h3>老師現在</h3><ul><li>巡視：是否偷偷寫成功能清單。</li><li>第 8 分鐘提醒：刪到只剩一個。</li><li>先完成者：寫出反證會長什麼樣。</li></ul></div></div><div class="footer-note">時間到：請兩組各用 30 秒說明「為什麼先驗這一個」</div>
+</section>
+<section class="slide light" id="map-debrief" data-title="假設地圖示範解答">
+  <div class="topline"><span class="chapter">DEBRIEF</span><span class="page-no"></span></div><div class="eyebrow">小安的選擇</div><h2>最先驗證的，不是 AI 能不能摘要</h2>
+  <div class="grid g2" style="margin-top:35px"><div class="card"><strong>不是這個</strong><p>「我們能不能做出自動提醒？」<br><br>技術可行，但不是目前最大未知。</p></div><div class="card coral-card"><strong>而是這個</strong><p>「組員願不願意每週主動回報進度？」<br><br>如果沒人回報，再厲害的功能都沒有資料。</p></div></div>
+  <p class="quote dark-text" style="margin:48px 0 0">先攻擊自己的想法，才不會讓市場替你攻擊。</p>
+</section>
+<section class="slide coral" id="section-hypothesis" data-title="第二章：寫成可被推翻的假設">
+  <div class="eyebrow">PART 02</div><div class="mega">寫成<br>可被推翻的假設</div><p class="lede dark-text">如果無論結果如何你都能說自己是對的，那不是假設，是信仰。</p><span class="section-num">02</span>
+</section>
+<section class="slide" id="weak-strong" data-title="模糊與可驗證">
+  <div class="topline"><span class="chapter">FUZZY → TESTABLE</span><span class="page-no"></span></div><h2>「學生需要更好的分組工具」哪裡有問題？</h2>
+  <div class="compare"><div class="side bad"><div class="label coral-text">模糊</div><blockquote>學生需要更好的分組工具。</blockquote><p class="why">誰？什麼叫需要？怎樣算更好？什麼結果能證明我們錯了？</p></div><div class="side good"><div class="label accent">可驗證</div><blockquote>10 位有分組經驗的學生中，至少 6 位會連續兩週完成 30 秒進度回報。</blockquote><p class="why">對象、行為、數量、時間與門檻都可觀察。</p></div></div>
+</section>
+<section class="slide" id="hypothesis-formula" data-title="假設句型">
+  <div class="topline"><span class="chapter">HYPOTHESIS CONTRACT</span><span class="page-no"></span></div><h2>一個能被測試的假設，至少有五個欄位</h2>
+  <div class="hypothesis">我們相信 <span class="blank">哪一群人</span>，在 <span class="blank">什麼情境</span> 下，會做出 <span class="blank">哪個行為</span>。如果提供 <span class="blank">最小方案</span>，至少 <span class="blank">多少人在多久內</span> 會完成；否則我們就重新檢查原假設。</div>
+  <p class="lede">關鍵不是預測一定成功，而是事先同意「什麼結果算失敗」。</p>
+</section>
+<section class="slide practice" id="practice-hypothesis" data-title="實作二：假設契約">
+  <div class="practice-head"><div><div class="eyebrow">暫停講解・學生實作 02</div><h2>把右上角假設寫成可驗證句子</h2></div><div><div class="timer-display" data-timer-display>10:00</div><div class="timer-actions"><button class="small-btn" data-timer-start="10">開始</button><button class="small-btn" data-timer-pause>暫停</button><button class="small-btn" data-timer-reset="10">重設</button></div></div></div>
+  <div class="practice-grid"><div class="practice-box"><h3>學生現在完成</h3><ol><li>填入對象、情境與可觀察行為。</li><li>設定數量、期限與成功門檻。</li><li>補上「否則我們要重新檢查什麼」。</li></ol></div><div class="practice-box"><h3>完成條件</h3><ul><li>陌生人看得出怎樣算通過。</li><li>結果可能證明團隊是錯的。</li><li>不能使用「喜歡、覺得、不錯」當指標。</li></ul></div><div class="practice-box teacher-box"><h3>老師現在</h3><ul><li>巡視：把形容詞逼成行為。</li><li>第 5 分鐘交換檢查。</li><li>先完成者：把門檻提高一級再辯護。</li></ul></div></div><div class="footer-note">時間到：請一組念原句，另一組指出哪個欄位仍然模糊</div>
+</section>
+<section class="slide lime" id="section-experiment" data-title="第三章：選擇最小產品實驗">
+  <div class="eyebrow">PART 03</div><div class="mega">選擇<br>最小產品實驗</div><p class="lede dark-text">不是做最小的產品，而是用最小的方法取得最關鍵的證據。</p><span class="section-num">03</span>
+</section>
+<section class="slide" id="experiment-selector" data-title="問題與實驗配對">
+  <div class="topline"><span class="chapter">CHOOSE THE RIGHT TEST</span><span class="page-no"></span></div><h2>你想知道什麼，決定你該做哪種實驗</h2>
+  <div class="selector"><div class="selector-tabs"><button class="tab-btn active" data-exp="problem">問題存在？</button><button class="tab-btn" data-exp="interest">真的有興趣？</button><button class="tab-btn" data-exp="usable">操作得了？</button><button class="tab-btn" data-exp="commit">願意付出？</button><button class="tab-btn" data-exp="repeat">會持續用？</button></div><div class="selector-panel" id="expPanel"><h3>驗證問題是否存在</h3><p>先看過去發生過什麼，而不是介紹你的解法。追問頻率、影響、當時怎麼處理，以及已付出的代價。</p><span class="recommend">過去行為訪談／現場觀察／使用日記</span></div></div>
+</section>
+<section class="slide" id="concierge" data-title="Concierge MVP">
+  <div class="topline"><span class="chapter">EXPERIMENT 01</span><span class="page-no"></span></div><span class="pill">Concierge MVP</span><h2 style="margin-top:28px">先用人提供完整服務，再決定哪裡需要自動化</h2>
+  <div class="flow"><div class="step"><b>組員私訊小安</b><span>每週傳一句目前進度。</span></div><div class="step"><b>小安人工整理</b><span>手動轉成紅黃綠狀態。</span></div><div class="step"><b>組長收到報表</b><span>觀察它是否真的促成行動。</span></div></div>
+  <div class="grid g2" style="margin-top:34px"><div class="card"><strong>驗證</strong><p>整理後的資訊是否帶來足夠價值。</p></div><div class="card coral-card"><strong>不是驗證</strong><p>我們能不能寫出漂亮的自動報表。</p></div></div>
+</section>
+<section class="slide light" id="wizard" data-title="Wizard of Oz">
+  <div class="topline"><span class="chapter">EXPERIMENT 02</span><span class="page-no"></span></div><span class="pill">Wizard of Oz</span><h2 style="margin-top:28px">前台像系統，後台其實由人操作</h2>
+  <div class="grid g3"><div class="card"><strong>1. 表面入口</strong><p>組員填一個 30 秒表單，像正式產品流程。</p></div><div class="card"><strong>2. 人工後台</strong><p>小安手動判讀、整理與傳送提醒。</p></div><div class="card em"><strong>3. 觀察行為</strong><p>大家是否願意照流程完成，而不是後台多自動。</p></div></div>
+  <p class="quote dark-text" style="margin:45px 0 0">用人力暫時替代技術，<br>但不要用人情替代真實需求。</p>
+</section>
+<section class="slide" id="fake-door" data-title="Fake Door 與倫理">
+  <div class="topline"><span class="chapter">EXPERIMENT 03</span><span class="page-no"></span></div><span class="pill">Fake Door</span><h2 style="margin-top:28px">先放入口觀察興趣，但不能把欺騙當成驗證</h2>
+  <div class="compare"><div class="side good"><div class="label accent">可以</div><blockquote>「這項功能仍在測試，留下信箱即可加入候補。」</blockquote><p class="why">清楚揭露狀態，只收必要資料，提供取消方式。</p></div><div class="side bad"><div class="label coral-text">不可以</div><blockquote>假裝已完成，誘導付款後才說產品不存在。</blockquote><p class="why">欺騙、過度蒐集資料，或讓受測者承擔不必要風險。</p></div></div>
+</section>
+<section class="slide" id="experiment-card" data-title="產品實驗卡">
+  <div class="topline"><span class="chapter">EXPERIMENT CARD</span><span class="page-no"></span></div><h2>一張卡，逼團隊先說清楚再開始</h2>
+  <div class="grid g4"><div class="card"><strong>假設</strong><p>哪件最危險的事必須為真？</p></div><div class="card"><strong>方法</strong><p>怎麼取得與假設直接相關的證據？</p></div><div class="card"><strong>門檻</strong><p>多少人、多久、做到什麼才算通過？</p></div><div class="card"><strong>決策</strong><p>通過、未通過，各要採取什麼行動？</p></div></div>
+  <div class="hypothesis" style="font-size:31px;margin-top:30px">目標對象｜關鍵行為｜實驗步驟｜資料與倫理｜成功門檻｜時間與預算上限｜下一步</div>
+</section>
+<section class="slide practice" id="practice-experiment" data-title="實作三：設計產品實驗">
+  <div class="practice-head"><div><div class="eyebrow">暫停講解・學生實作 03</div><h2>完成一張可以真的執行的產品實驗卡</h2></div><div><div class="timer-display" data-timer-display>20:00</div><div class="timer-actions"><button class="small-btn" data-timer-start="20">開始</button><button class="small-btn" data-timer-pause>暫停</button><button class="small-btn" data-timer-reset="20">重設</button></div></div></div>
+  <div class="practice-grid"><div class="practice-box"><h3>學生現在完成</h3><ol><li>選一種實驗方法。</li><li>寫出 3～5 個執行步驟。</li><li>設定成功／失敗門檻。</li><li>標記資料與倫理風險。</li></ol></div><div class="practice-box"><h3>完成條件</h3><ul><li>48 小時內可以開始。</li><li>不必先開發完整產品。</li><li>結果能改變下一步決策。</li><li>投入上限寫得清楚。</li></ul></div><div class="practice-box teacher-box"><h3>老師現在</h3><ul><li>巡視：實驗是否只是在做 Demo。</li><li>第 10 分鐘追問：「失敗長什麼樣？」</li><li>先完成者：換一種更便宜的方法。</li></ul></div></div><div class="footer-note">時間到：每組只說「假設、方法、門檻」，控制在 45 秒</div>
+</section>
+<section class="slide light" id="break" data-title="休息十分鐘">
+  <div class="eyebrow">BREAK</div><div class="mega dark-text">休息 10 分鐘</div><p class="quote dark-text" style="margin:50px 0 0">回來後，我們會練習一件更難的事：<br><span class="coral-text">不讓使用者只是順著你說。</span></p>
+</section>
+<section class="slide coral" id="section-interview" data-title="第四章：取得可靠證據">
+  <div class="eyebrow">PART 04</div><div class="mega">取得<br>可靠證據</div><p class="lede dark-text">訪談不是推銷點子，也不是請使用者替你設計產品。</p><span class="section-num">04</span>
+</section>
+<section class="slide" id="mom-test" data-title="三個訪談原則">
+  <div class="topline"><span class="chapter">PAST BEHAVIOR, NOT POLITE OPINION</span><span class="page-no"></span></div><h2>避免得到「連媽媽都會稱讚」的假答案</h2>
+  <div class="grid g3"><div class="card em"><strong>問過去</strong><p>「上一次發生是在什麼時候？」不要問「以後會不會」。</p></div><div class="card"><strong>問具體事件</strong><p>問當時做了什麼、用了什麼、花了多久。</p></div><div class="card"><strong>問付出</strong><p>找時間、金錢、資料、信任與替代方案。</p></div></div>
+  <p class="lede">好的訪談讓你更理解他的生活；不好的訪談讓他更理解你的產品。</p>
+</section>
+<section class="slide" id="questions-reveal" data-title="壞問題與好問題">
+  <div class="topline"><span class="chapter">QUESTION REPAIR</span><span class="page-no"></span></div><h2>先判斷，再揭曉</h2>
+  <div class="grid g2"><div class="card"><strong class="coral-text">你會使用這個 App 嗎？</strong><div class="reveal" id="answer1"><p>改問：上一次分組進度失控時，你怎麼發現？接著做了什麼？</p></div><button class="reveal-btn" data-reveal="answer1" style="margin-top:22px">揭曉改法</button></div><div class="card"><strong class="coral-text">你願意為它付費嗎？</strong><div class="reveal" id="answer2"><p>改問：你目前為了解決這個問題，已經花了多少時間或金錢？</p></div><button class="reveal-btn" data-reveal="answer2" style="margin-top:22px">揭曉改法</button></div><div class="card"><strong class="coral-text">要不要加入 AI？</strong><div class="reveal" id="answer3"><p>改問：目前哪個步驟最花時間？你上次如何處理？</p></div><button class="reveal-btn" data-reveal="answer3" style="margin-top:22px">揭曉改法</button></div><div class="card"><strong class="coral-text">你覺得介面好看嗎？</strong><div class="reveal" id="answer4"><p>改成任務測試：請你不用提示，完成一次進度回報。</p></div><button class="reveal-btn" data-reveal="answer4" style="margin-top:22px">揭曉改法</button></div></div>
+</section>
+<section class="slide practice" id="practice-interview" data-title="實作四：訪談角色扮演">
+  <div class="practice-head"><div><div class="eyebrow">暫停講解・學生實作 04</div><h2>三分鐘訪談，不准介紹自己的解法</h2></div><div><div class="timer-display" data-timer-display>12:00</div><div class="timer-actions"><button class="small-btn" data-timer-start="12">開始</button><button class="small-btn" data-timer-pause>暫停</button><button class="small-btn" data-timer-reset="12">重設</button></div></div></div>
+  <div class="practice-grid"><div class="practice-box"><h3>學生現在完成</h3><ol><li>A 訪談、B 回答、C 記錄。</li><li>三分鐘後輪替角色。</li><li>只問過去事件與已發生行為。</li></ol></div><div class="practice-box"><h3>完成條件</h3><ul><li>找到一個具體事件。</li><li>記錄現有替代方案。</li><li>找出至少一項真實付出。</li><li>沒有問「你會不會用」。</li></ul></div><div class="practice-box teacher-box"><h3>老師現在</h3><ul><li>聽到推銷就提醒：「回到過去」。</li><li>第 6 分鐘宣布換角色。</li><li>收束時分享一句最有用的追問。</li></ul></div></div><div class="footer-note">時間到：每組交出一項「原本沒想到的事實」，不是功能建議</div>
+</section>
+<section class="slide lime" id="section-decision" data-title="第五章：根據證據做決定">
+  <div class="eyebrow">PART 05</div><div class="mega">根據證據<br>做決定</div><p class="lede dark-text">實驗的目的不是證明自己很棒，而是降低下一個決策的風險。</p><span class="section-num">05</span>
+</section>
+<section class="slide" id="threshold" data-title="先訂門檻再看結果">
+  <div class="topline"><span class="chapter">PRE-COMMIT THE THRESHOLD</span><span class="page-no"></span></div><h2>門檻要在實驗前決定</h2>
+  <div class="compare"><div class="side bad"><div class="label coral-text">看完結果才解釋</div><blockquote>「雖然只有兩個人使用，但他們都說很有潛力。」</blockquote><p class="why">結果永遠能被包裝成成功，團隊就學不到東西。</p></div><div class="side good"><div class="label accent">實驗前先承諾</div><blockquote>「10 人中至少 6 人，連續兩週主動完成回報。」</blockquote><p class="why">通過或未通過都有清楚的下一步。</p></div></div>
+</section>
+<section class="slide" id="result-choice" data-title="小安的實驗結果">
+  <div class="topline"><span class="chapter">MAKE THE CALL</span><span class="page-no"></span></div><div class="eyebrow">小安原定門檻：10 人中至少 6 人連續回報兩週</div><h2>結果：8 人第一週完成，第二週只剩 3 人</h2>
+  <div class="decision-row"><button class="choice-btn decision-choice" data-choice="continue">繼續：直接開發</button><button class="choice-btn decision-choice" data-choice="adjust">調整：重新驗證</button><button class="choice-btn decision-choice" data-choice="stop">停止：問題不存在</button></div>
+  <div class="decision-feedback" id="decisionFeedback">選擇一個決策，再看你是否把證據解讀成了結論。</div>
+</section>
+<section class="slide light" id="decision-debrief" data-title="調整不是加功能">
+  <div class="topline"><span class="chapter">PIVOT WITH A REASON</span><span class="page-no"></span></div><div class="eyebrow">較合理的判讀</div><h2>問題可能存在，但「每週主動回報」沒有形成習慣</h2>
+  <div class="grid g3"><div class="card"><strong>先保留</strong><p>第一週有 8 人願意嘗試，初始興趣並不低。</p></div><div class="card"><strong>重新檢查</strong><p>回報時機、觸發方式，或價值是否來得太晚。</p></div><div class="card coral-card"><strong>不要急著做</strong><p>不是立刻加 AI、徽章、排行榜來挽救數字。</p></div></div>
+  <p class="quote dark-text" style="margin:42px 0 0">調整，是換一個假設；不是替原想法加更多裝飾。</p>
+</section>
+<section class="slide practice" id="final-lab" data-title="整合挑戰：實驗提案">
+  <div class="practice-head"><div><div class="eyebrow">最終整合挑戰</div><h2>完成你們的 90 秒產品實驗提案</h2></div><div><div class="timer-display" data-timer-display>20:00</div><div class="timer-actions"><button class="small-btn" data-timer-start="20">開始</button><button class="small-btn" data-timer-pause>暫停</button><button class="small-btn" data-timer-reset="20">重設</button></div></div></div>
+  <div class="practice-grid"><div class="practice-box"><h3>學生現在完成</h3><ol><li>問題與目標對象。</li><li>最危險的假設。</li><li>最小實驗與執行步驟。</li><li>成功門檻與下一步。</li></ol></div><div class="practice-box"><h3>完成條件</h3><ul><li>90 秒內說完。</li><li>沒有功能清單。</li><li>實驗 48 小時內能啟動。</li><li>聽眾能判斷怎樣算失敗。</li></ul></div><div class="practice-box teacher-box"><h3>老師現在</h3><ul><li>先確認每組門檻寫在紙上。</li><li>第 10 分鐘開始試講。</li><li>慢組：保留假設、方法、門檻三項。</li></ul></div></div><div class="footer-note">時間到：每組 90 秒；同學只能追問「這份證據能支持哪個決定？」</div>
+</section>
+<section class="slide" id="rubric" data-title="發表回饋標準">
+  <div class="topline"><span class="chapter">90-SECOND REVIEW</span><span class="page-no"></span></div><h2>不是比畫面漂亮，是比<span class="accent">能不能學到關鍵答案</span></h2>
+  <div class="rubric"><div>問題是否有具體事實，而非只有感覺？</div><div class="score">20%</div><div>是否找出一錯就致命的假設？</div><div class="score">20%</div><div>實驗能否直接驗證該假設？</div><div class="score">20%</div><div>成功與失敗門檻是否明確？</div><div class="score">20%</div><div>下一步是否真的依照證據？</div><div class="score">20%</div></div>
+</section>
+<section class="slide coral" id="takeaway" data-title="成熟團隊的選擇">
+  <div class="eyebrow">TAKEAWAY</div><p class="quote dark-text" style="font-size:72px;max-width:1550px">成熟的產品團隊，不是從不失敗；<br>而是用<span style="background:#101525;color:var(--lime);padding:0 16px">最小的代價</span>，提早發現自己錯在哪裡。</p>
+  <div class="flow" style="margin-top:70px"><div class="step" style="background:#101525"><b>想法</b><span>只是起點</span></div><div class="step" style="background:#101525"><b>假設</b><span>能被推翻</span></div><div class="step" style="background:#101525"><b>實驗</b><span>取得證據</span></div><div class="step" style="background:#101525"><b>決策</b><span>改變下一步</span></div></div>
+</section>
+<section class="slide" id="next" data-title="下一堂：通過驗證後再寫 Code">
+  <div class="eyebrow">NEXT: MVP IMPLEMENTATION</div><h1>通過驗證後，<br>才開始寫第一行 <span class="accent">Code</span></h1>
+  <div class="grid g3" style="margin-top:60px"><div class="card"><strong>User Story Mapping</strong><p>把需求整理成完整使用流程。</p></div><div class="card"><strong>Vertical Slice</strong><p>只做最小的一刀，但從畫面走到資料。</p></div><div class="card em"><strong>ASP.NET MVP</strong><p>做出可驗收、可量測、可繼續學習的第一版。</p></div></div>
+  <p class="lede">今天帶走：假設地圖、假設契約、實驗卡、訪談紀錄與一個清楚的下一步。</p>
+</section>
+</div></main>
+<nav class="controls" aria-label="簡報控制列">
+  <div class="cluster"><button class="control-btn" id="prevBtn" aria-label="上一頁">←</button><button class="control-btn" id="nextBtn" aria-label="下一頁">→</button><button class="control-btn hide-mobile" id="overviewBtn">總覽</button></div>
+  <div class="cluster"><div class="progress" aria-hidden="true"><span id="progressBar"></span></div><div class="counter" id="counter">1 / 43</div></div>
+  <div class="cluster"><span class="kbd hide-mobile">← → / Space</span><button class="control-btn" id="printBtn">列印</button><button class="control-btn hide-mobile" id="fullBtn">全螢幕</button></div>
+</nav>
+<dialog class="dialog" id="overviewDialog"><div class="dialog-head"><h2>投影片總覽</h2><button class="close-btn" id="closeOverview" aria-label="關閉">×</button></div><div class="overview-grid" id="overviewGrid"></div></dialog>
+<script>
+(() => {
+  const slides=[...document.querySelectorAll('.slide')], deck=document.getElementById('deck');
+  const counter=document.getElementById('counter'), progress=document.getElementById('progressBar');
+  const stateKey='thu-product-evidence-deck-v2';
+  let index=Math.min(Number(localStorage.getItem(stateKey))||0,slides.length-1);
+  const clamp=n=>Math.max(0,Math.min(n,slides.length-1));
+  function fit(){
+    if(innerWidth<=760){deck.style.transform='none';return;}
+    const controls=innerHeight<=720?64:82;
+    const scale=Math.min(1,innerWidth/1920,(innerHeight-controls)/1080);
+    deck.style.transform=`translate(-50%, -50%) scale(${scale})`;
+  }
+  function show(n){
+    index=clamp(n);slides.forEach((s,i)=>s.classList.toggle('active',i===index));
+    slides.forEach((s,i)=>{s.setAttribute('aria-hidden',i===index?'false':'true')});
+    counter.textContent=`${index+1} / ${slides.length}`;progress.style.width=`${(index+1)/slides.length*100}%`;
+    localStorage.setItem(stateKey,index);document.title=`${index+1}/${slides.length}｜${slides[index].dataset.title}｜從洞察到證據`;
+    if(innerWidth<=760) document.querySelector('.deck-viewport').scrollTop=0;
+    fit();
+  }
+  const next=()=>show(index+1), prev=()=>show(index-1);
+  document.getElementById('nextBtn').addEventListener('click',next);document.getElementById('prevBtn').addEventListener('click',prev);
+  addEventListener('keydown',e=>{
+    const tag=document.activeElement.tagName;
+    if(['INPUT','TEXTAREA','SELECT'].includes(tag)) return;
+    if(tag==='BUTTON'&&(e.key===' '||e.key==='Enter')) return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}
+    if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);
+    if(e.key==='Escape'&&document.fullscreenElement)document.exitFullscreen();
+  });
+  const dialog=document.getElementById('overviewDialog'), grid=document.getElementById('overviewGrid');
+  slides.forEach((s,i)=>{const b=document.createElement('button');b.className='overview-item';b.innerHTML=`<small>${String(i+1).padStart(2,'0')}</small><span>${s.dataset.title}</span>`;b.onclick=()=>{show(i);dialog.close()};grid.appendChild(b);const pn=s.querySelector('.page-no');if(pn)pn.textContent=String(i+1).padStart(2,'0')});
+  document.getElementById('overviewBtn').onclick=()=>dialog.showModal();document.getElementById('closeOverview').onclick=()=>dialog.close();
+  document.getElementById('printBtn').onclick=()=>print();
+  document.getElementById('fullBtn').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+  document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{const el=document.getElementById(b.dataset.reveal);el.classList.toggle('shown');b.textContent=el.classList.contains('shown')?'收起答案':'揭曉改法'}));
+  const pollText={build:'還太早：我們只有禮貌性的口頭意見，尚未看到真實行為。',ask:'多問幾個人不一定更可靠；如果問法不變，只會得到更多相同的意見。',behavior:'較好的下一步：先指定關鍵行為，再用最低成本觀察它是否發生。'};
+  document.querySelectorAll('.poll-choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.poll-choice').forEach(x=>x.classList.toggle('selected',x===b));document.getElementById('pollFeedback').textContent=pollText[b.dataset.poll]});
+  const exp={problem:['驗證問題是否存在','先看過去發生過什麼，而不是介紹你的解法。追問頻率、影響、當時怎麼處理，以及已付出的代價。','過去行為訪談／現場觀察／使用日記'],interest:['驗證是否產生初始興趣','讓目標對象看見清楚的價值主張，觀察是否願意採取一個小行動。點擊只是弱證據，必須搭配下一步。','Landing Page／候補名單／Fake Door'],usable:['驗證是否能完成關鍵任務','不要問介面好不好看；交給受測者一個任務，觀察他在哪裡停住、誤解或放棄。','紙本原型／Clickable Prototype／任務測試'],commit:['驗證是否願意付出成本','把「我會用」升級成具體承諾，例如留下聯絡資料、預約、邀請夥伴、付訂金或先交資料。','預約／付訂／邀請／資料提交'],repeat:['驗證價值是否能進入日常','第一次嘗試常來自好奇；真正的價值要看是否在沒有你提醒的情況下再次使用。','人工小規模試營運／重複使用測試']};
+  document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.toggle('active',x===b));const d=exp[b.dataset.exp];document.getElementById('expPanel').innerHTML=`<h3>${d[0]}</h3><p>${d[1]}</p><span class="recommend">${d[2]}</span>`});
+  const decisionText={continue:'證據沒有通過原定門檻，直接開發會把未知變成開發成本。',adjust:'較合理。第一週有興趣，但第二週掉落；要重新檢查觸發時機、價值回饋或主動回報這個假設。',stop:'還不能直接判定問題不存在；目前被否定的是「會連續主動回報」這個行為假設。'};
+  document.querySelectorAll('.decision-choice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.decision-choice').forEach(x=>x.classList.toggle('selected',x===b));document.getElementById('decisionFeedback').textContent=decisionText[b.dataset.choice]});
+  let timerId=null,deadline=0,pausedRemaining=0,activeDisplay=null;
+  function paint(ms){if(!activeDisplay)return;const total=Math.max(0,Math.ceil(ms/1000)),m=Math.floor(total/60),s=total%60;activeDisplay.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;if(total===0){clearInterval(timerId);timerId=null}}
+  function run(ms){clearInterval(timerId);pausedRemaining=ms;deadline=Date.now()+ms;paint(ms);timerId=setInterval(()=>{pausedRemaining=Math.max(0,deadline-Date.now());paint(pausedRemaining)},250)}
+  document.querySelectorAll('[data-timer-start]').forEach(b=>b.onclick=()=>{activeDisplay=b.closest('.practice').querySelector('[data-timer-display]');run((pausedRemaining||Number(b.dataset.timerStart)*60000))});
+  document.querySelectorAll('[data-timer-pause]').forEach(b=>b.onclick=()=>{clearInterval(timerId);timerId=null;if(activeDisplay)pausedRemaining=Math.max(0,deadline-Date.now())});
+  document.querySelectorAll('[data-timer-reset]').forEach(b=>b.onclick=()=>{clearInterval(timerId);timerId=null;activeDisplay=b.closest('.practice').querySelector('[data-timer-display]');pausedRemaining=Number(b.dataset.timerReset)*60000;paint(pausedRemaining)});
+  addEventListener('resize',fit);show(index);
+})();
+</script>
+</body>
+</html>
