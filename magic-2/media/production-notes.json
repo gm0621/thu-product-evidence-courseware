@@ -1,0 +1,40 @@
+{
+  "format": "3 silent 24-second MP4 motion-illustration clips, H.264, 1440x810, 24fps",
+  "disclosure": "AI-generated illustration. Fictional classroom adaptation, not historical footage. No generated voice or external video embeds.",
+  "captions": {
+    "case01": [
+      "明天要交報告，今晚還得替社團發文。",
+      "你想做個工具，讓貼文到時間自動發出去。",
+      "朋友說：「做好通知我，我一定用！」",
+      "如果是你，現在就開始做嗎？"
+    ],
+    "case02": [
+      "你們做了一個讓人更快處理信件的工具。",
+      "有人想免費，有人要更多功能，有人只想更快。",
+      "團隊下個月，只能完成一件事。",
+      "如果是你，你會先聽誰的？"
+    ],
+    "case03": [
+      "你和夥伴花了很多心力，做出一個遊戲世界。",
+      "有玩家很喜歡，卻還不足以支撐營運。",
+      "繼續做，還要投入時間和資源。",
+      "如果是你，下一筆資源投在哪裡？"
+    ]
+  },
+  "generator": "Built-in image_gen",
+  "kind": "AI illustration + locally produced silent motion video",
+  "prompts": [
+    {
+      "key": "case01",
+      "prompt": "Use case: illustration-story. Create a single widescreen 16:9 cinematic editorial illustration for a university entrepreneurship classroom scenario, NOT a real event. Scene: evening at a Taiwanese university club office, a 21-year-old East Asian female student social media editor with short black hair and round glasses, sage green overshirt, leaning over a laptop and holding a phone. A wall clock, sticky notes, cold tea, unfinished class notes and a camera on the desk suggest she is interrupted by posting duties. Show her slightly tired but relatable, not distressed. Two fellow students chatting in a softly blurred background. Hand-painted high-end graphic novel style with subtle paper grain, realistic human anatomy, expressive faces, dark forest green shadows, warm cream light and lime accents. Composition: student and desk mainly center-right, environmental detail left, keep bottom 20% visually quieter for later subtitles. No readable words anywhere, no brand logos, no app logos, no watermark, no price page, no solution, no real company reference. Detailed, atmospheric, polished, suitable for 1920x1080 projection. Single continuous scene, not panels."
+    },
+    {
+      "key": "case02",
+      "prompt": "Use case: illustration-story. Create a single widescreen 16:9 cinematic editorial illustration for a university entrepreneurship classroom scenario, NOT a real event. Scene: a Taiwanese university student startup team around a shared desk, four East Asian young adults about 21 years old. A male student developer wearing a dark green hoodie is at the center looking thoughtfully at his laptop while three peers around him each ask for different things with expressive gestures: one points at a phone, one holds a dense notebook of feature sketches (no legible text), one gestures towards a clock. Friendly disagreement and limited time, no angry or threatening gestures. Hand-painted high-end graphic novel style with subtle paper grain, natural anatomy, dark forest green, cream daylight, muted lavender accents. Landscape medium-wide composition showing all four distinct faces, foreground laptop with no recognizable logo, no identifiable product interface. Keep bottom 20% calmer for later subtitles. No words, no labels, no brand logo, no watermarks, no email-company references, no solution, no winner. Single continuous scene, not panels."
+    },
+    {
+      "key": "case03",
+      "prompt": "Use case: illustration-story. Create a single widescreen 16:9 cinematic editorial illustration for a university entrepreneurship classroom scenario, NOT a real event. Scene: late evening in a small indie game studio started by young East Asian university graduates. Three 23-year-old teammates sit around desks, visibly thoughtful about their future. In foreground a young woman holds a sketchbook with colorful fantasy creature art (original fictional creatures, no known franchise). A male teammate sits beside a large monitor showing a beautiful whimsical 2D forest exploration game with tiny characters, no readable interface or text. Another teammate quietly studies a calendar. They have built a world they love, but face uncertainty. Camera wide with environment visible, plants, mugs, modest equipment, empty chair. Warm amber desk lamps, deep forest green shadows, apricot accents; hand-painted high-end graphic novel with fine paper grain, realistic expressive faces. No text, numbers, brand names, Slack symbol or chat interface, no solution, no company logo, no sad disaster scene. Keep bottom 20% quieter for later subtitles. 16:9 landscape, single continuous scene."
+    }
+  ]
+}
