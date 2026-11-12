@@ -101,7 +101,7 @@ function setupCinema(s){
 
 function readField(i){try{return localStorage.getItem('magic2-field-'+i)||'';}catch{return '';}}
 function advanceChat(){chatStep=Math.min(chatStep+1,S[current].lines?.length||0);document.querySelectorAll('.bubble').forEach((b,i)=>b.classList.toggle('on',i<chatStep));}
-function go(i){document.querySelectorAll('video').forEach(v=>v.pause());clearInterval(chatInterval);chatStep=0;current=Math.max(0,Math.min(31,i));revealed=false;revealStep=0;timerRunning=false;timerSeconds=S[current].timer||0;render();}
+function go(i){document.querySelectorAll('dialog[open]').forEach(d=>d.close());clearInterval(chatInterval);chatStep=0;current=Math.max(0,Math.min(31,i));revealed=false;revealStep=0;timerRunning=false;timerSeconds=S[current].timer||0;render();}
 function next(){document.querySelectorAll('video').forEach(v=>v.pause());if(S[current].reveal&&!revealed){revealed=true;render();}else if(S[current].revealScenes&&revealStep<S[current].revealScenes.length-1){revealStep++;render();}else if(current<31)go(current+1);}
 function previous(){if(S[current].revealScenes&&revealed){if(revealStep>0)revealStep--;else revealed=false;render();}else go(current-1);}
 function time(n){n=Math.max(0,Math.ceil(n));return String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');}
