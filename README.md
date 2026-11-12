@@ -25,3 +25,13 @@ https://gm0621.github.io/thu-product-evidence-courseware/
 - 「列印」：輸出完整講義或 PDF
 
 簡報為自包含靜態 HTML，不需要後端服務。
+
+## 從 0 到 1 的魔法 II
+
+32 頁案例討論式網頁簡報，90 分鐘課程＋30 分鐘 Q&A。
+
+- [直接播放簡報](https://gm0621.github.io/thu-product-evidence-courseware/magic-2/)
+- [講者手冊](https://gm0621.github.io/thu-product-evidence-courseware/magic-2/speaker-notes.html)
+- [七天實驗卡](https://gm0621.github.io/thu-product-evidence-courseware/magic-2/worksheet.html)
+
+圖片內嵌，支援鍵盤換頁、案例揭曉、討論倒數及講者視窗。教學模擬與案例來源已在簡報中標註。
